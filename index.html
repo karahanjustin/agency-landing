@@ -260,23 +260,16 @@
   }
   .ref-thumb {
     aspect-ratio: 16 / 10;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    font-size: 1rem;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    background: var(--card-bg);
   }
-  .ref-thumb.t-maison { background: linear-gradient(135deg, #b08d50, #2a2018); }
-  .ref-thumb.t-maison-dark { background: linear-gradient(135deg, #c4633a, #14110d); }
-  .ref-thumb.t-atelier { background: linear-gradient(135deg, #b07a72, #f1d8d2); color: #2a201d; text-shadow: none; }
-  .ref-thumb.t-aurele { background: linear-gradient(135deg, #c9a96e, #1a1a1a); }
-  .ref-thumb.t-cirque { background: linear-gradient(135deg, #c9a84c, #0a1228); }
-  .ref-thumb.t-gym { background: linear-gradient(135deg, #ff00e5, #00f0ff); }
-  .ref-thumb.t-cafe { background: linear-gradient(135deg, #C48B8B, #f5e6d3); color: #2a201d; text-shadow: none; }
-  .ref-thumb.t-ember { background: linear-gradient(135deg, #d4603a, #1a0f08); }
+  .ref-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .ref-card:hover .ref-thumb img { transform: scale(1.04); }
   .ref-body {
     padding: 22px;
   }
@@ -659,7 +652,7 @@
     <p class="section-subtitle">A few live showcase sites I've shipped. Click any card to open it in a new tab.</p>
     <div class="ref-grid">
       <a class="ref-card" href="https://karahanjustin.github.io/website-showcase/maison-rentals/" target="_blank" rel="noopener">
-        <div class="ref-thumb t-maison">MAISON &amp; CO</div>
+        <div class="ref-thumb"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80" alt="Maison & Co preview"></div>
         <div class="ref-body">
           <h3>Maison &amp; Co — Cream Editorial</h3>
           <p>Premium real-estate rental site with curated listings, search, and a warm gold-on-cream palette.</p>
@@ -667,7 +660,7 @@
         </div>
       </a>
       <a class="ref-card" href="https://karahanjustin.github.io/website-showcase/maison-rentals-dark/" target="_blank" rel="noopener">
-        <div class="ref-thumb t-maison-dark">MAISON · DARK</div>
+        <div class="ref-thumb"><img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80" alt="Maison Dark preview"></div>
         <div class="ref-body">
           <h3>Maison &amp; Co — Dark Editorial</h3>
           <p>Magazine-style variant in rust and ink. Massive Fraunces typography, asymmetric property grid.</p>
@@ -675,7 +668,7 @@
         </div>
       </a>
       <a class="ref-card" href="https://karahanjustin.github.io/website-showcase/atelier-lumiere/" target="_blank" rel="noopener">
-        <div class="ref-thumb t-atelier">ATELIER LUMIÈRE</div>
+        <div class="ref-thumb"><img src="https://images.unsplash.com/photo-1626383137804-ff908d2753a2?w=800&q=80" alt="Atelier Lumière preview"></div>
         <div class="ref-body">
           <h3>Atelier Lumière — Beauty Studio</h3>
           <p>Premium salon site with services, pricing, gallery, and booking form. Blush, cream, and rose-deep accents.</p>
@@ -683,7 +676,7 @@
         </div>
       </a>
       <a class="ref-card" href="https://karahanjustin.github.io/website-showcase/aurele-jewelry/" target="_blank" rel="noopener">
-        <div class="ref-thumb t-aurele">AURELE</div>
+        <div class="ref-thumb"><img src="https://images.pexels.com/photos/29486075/pexels-photo-29486075.jpeg?w=800" alt="Aurele Jewelry preview"></div>
         <div class="ref-body">
           <h3>Aurele Jewelry</h3>
           <p>Luxurious jewelry shop with functioning cart, category filters, and a dark-and-gold aesthetic.</p>
@@ -691,7 +684,7 @@
         </div>
       </a>
       <a class="ref-card" href="https://karahanjustin.github.io/website-showcase/cirque-etoile/" target="_blank" rel="noopener">
-        <div class="ref-thumb t-cirque">CIRQUE ÉTOILE</div>
+        <div class="ref-thumb"><img src="https://images.unsplash.com/photo-1503095396549-807759245b35?w=800&q=80" alt="Cirque Étoile preview"></div>
         <div class="ref-body">
           <h3>Cirque Étoile</h3>
           <p>Showcase site for a modern, animal-free circus. Dark navy &amp; gold with twinkling-star animations.</p>
@@ -699,7 +692,7 @@
         </div>
       </a>
       <a class="ref-card" href="https://karahanjustin.github.io/website-showcase/gym-neon/" target="_blank" rel="noopener">
-        <div class="ref-thumb t-gym">NEONFIT</div>
+        <div class="ref-thumb"><img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80" alt="Neonfit preview"></div>
         <div class="ref-body">
           <h3>Neonfit Gym</h3>
           <p>Bold neon-art gym one-pager with glowing effects, dark theme, and programs/trainers/pricing sections.</p>
@@ -707,7 +700,7 @@
         </div>
       </a>
       <a class="ref-card" href="https://karahanjustin.github.io/website-showcase/blossom-cafe/" target="_blank" rel="noopener">
-        <div class="ref-thumb t-cafe">BLOSSOM CAFÉ</div>
+        <div class="ref-thumb"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&q=80" alt="Blossom Café preview"></div>
         <div class="ref-body">
           <h3>Blossom Café</h3>
           <p>Cozy pastel café one-pager in soft pink &amp; cream. Menu cards, gallery, and warm typography.</p>
@@ -715,7 +708,7 @@
         </div>
       </a>
       <a class="ref-card" href="https://karahanjustin.github.io/website-showcase/ember-steakhouse/" target="_blank" rel="noopener">
-        <div class="ref-thumb t-ember">EMBER &amp; OAK</div>
+        <div class="ref-thumb"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80" alt="Ember & Oak preview"></div>
         <div class="ref-body">
           <h3>Ember &amp; Oak Steakhouse</h3>
           <p>Hipster steakhouse one-pager with dark wood tones, dry-aged cuts, and craft cocktails.</p>
