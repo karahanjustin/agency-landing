@@ -272,12 +272,18 @@
   .v-card .v-thumb {
     aspect-ratio: 16 / 9;
     display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
     color: white;
     font-weight: 700;
     letter-spacing: 0.14em;
     font-size: 0.9rem;
     text-shadow: 0 2px 8px rgba(0,0,0,0.3);
   }
+  .v-card .v-thumb img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .v-card:hover .v-thumb img { transform: scale(1.04); }
   .v-card .v-thumb.t-maison { background: linear-gradient(135deg, #b08d50, #2a2018); }
   .v-card .v-thumb.t-maison-dark { background: linear-gradient(135deg, #c4633a, #14110d); }
   .v-card .v-thumb.t-atelier { background: linear-gradient(135deg, #b07a72, #f1d8d2); color: #2a201d; text-shadow: none; }
@@ -654,14 +660,14 @@
         <p class="v-sub">Curated, magazine-style rental and listings sites with search, filters, and trust-building copy.</p>
         <div class="vertical-cards">
           <a class="v-card" href="https://karahanjustin.github.io/website-showcase/maison-rentals/" target="_blank" rel="noopener">
-            <div class="v-thumb t-maison">MAISON &amp; CO &mdash; CREAM</div>
+            <div class="v-thumb"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80" alt="Maison & Co"></div>
             <div class="v-body">
               <h4>Maison &amp; Co</h4>
               <p>Premium rentals, cream + gold editorial.</p>
             </div>
           </a>
           <a class="v-card" href="https://karahanjustin.github.io/website-showcase/maison-rentals-dark/" target="_blank" rel="noopener">
-            <div class="v-thumb t-maison-dark">MAISON &middot; DARK</div>
+            <div class="v-thumb"><img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80" alt="Maison Dark"></div>
             <div class="v-body">
               <h4>Maison &amp; Co &mdash; Dark Editorial</h4>
               <p>Magazine variant in rust and ink.</p>
