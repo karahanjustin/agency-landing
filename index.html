@@ -83,6 +83,20 @@
     letter-spacing: -0.02em;
   }
   .logo span { color: var(--accent); }
+  /* Placeholder styling — distinguishes WIP slot from a finished logo */
+  .logo-placeholder {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border: 1px dashed var(--text-muted);
+    border-radius: 8px;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    font-weight: 600;
+  }
+  .logo-placeholder .logo-mark { color: var(--accent); font-size: 0.9rem; }
   .nav-links { display: flex; gap: 28px; align-items: center; }
   .nav-links a {
     color: var(--text-muted);
@@ -220,6 +234,70 @@
     font-weight: 700;
   }
 
+  /* References — visual showcase cards */
+  .ref-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .ref-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: var(--card-shadow);
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+  }
+  .ref-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 40px rgba(0, 60, 160, 0.18);
+  }
+  .ref-thumb {
+    aspect-ratio: 16 / 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    font-size: 1rem;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  .ref-thumb.t-maison { background: linear-gradient(135deg, #b08d50, #2a2018); }
+  .ref-thumb.t-maison-dark { background: linear-gradient(135deg, #c4633a, #14110d); }
+  .ref-thumb.t-atelier { background: linear-gradient(135deg, #b07a72, #f1d8d2); color: #2a201d; text-shadow: none; }
+  .ref-thumb.t-aurele { background: linear-gradient(135deg, #c9a96e, #1a1a1a); }
+  .ref-thumb.t-cirque { background: linear-gradient(135deg, #c9a84c, #0a1228); }
+  .ref-thumb.t-gym { background: linear-gradient(135deg, #ff00e5, #00f0ff); }
+  .ref-thumb.t-cafe { background: linear-gradient(135deg, #C48B8B, #f5e6d3); color: #2a201d; text-shadow: none; }
+  .ref-thumb.t-ember { background: linear-gradient(135deg, #d4603a, #1a0f08); }
+  .ref-body {
+    padding: 22px;
+  }
+  .ref-body h3 {
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+    font-weight: 700;
+  }
+  .ref-body p {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  .ref-meta {
+    font-size: 0.75rem;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+
   /* Portfolio */
   .portfolio-grid {
     display: grid;
@@ -313,6 +391,36 @@
     letter-spacing: -0.03em;
   }
   .price-card .price small { font-size: 0.95rem; color: var(--text-muted); font-weight: 400; }
+  /* Stacked pricing block — "48h" on top line, "from €499" below */
+  .price-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin-bottom: 24px;
+  }
+  .price-stack .delivery {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 4px 10px;
+    border-radius: 6px;
+    background: rgba(0, 102, 255, 0.1);
+  }
+  .price-stack .amount {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+  .price-stack .amount small {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-left: 2px;
+  }
   .price-card ul { list-style: none; margin-bottom: 28px; flex-grow: 1; }
   .price-card ul li {
     padding: 8px 0;
@@ -437,13 +545,17 @@
 
 <nav>
   <div class="nav-inner">
-    <div class="logo">Justin<span>.</span></div>
+    <!-- LOGO PLACEHOLDER: new brand logo will be supplied; swap this div for an <img> when ready -->
+    <div class="logo logo-placeholder" aria-label="Logo placeholder — new logo to be supplied">
+      <span class="logo-mark">◆</span>
+      <span class="logo-text">LOGO</span>
+    </div>
     <div class="nav-links">
       <a href="#about">About</a>
       <a href="#work">Work</a>
+      <a href="#references">References</a>
       <a href="#packages">Pricing</a>
       <a href="#contact">Contact</a>
-      <a href="index.de.html" class="lang-link" title="Deutsch">DE</a>
       <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
     </div>
   </div>
@@ -540,49 +652,116 @@
   </div>
 </section>
 
+<!-- References — live showcase sites -->
+<section id="references">
+  <div class="container">
+    <h2 class="section-title">References</h2>
+    <p class="section-subtitle">A few live showcase sites I've shipped. Click any card to open it in a new tab.</p>
+    <div class="ref-grid">
+      <a class="ref-card" href="https://karahanjustin.github.io/website-showcase/maison-rentals/" target="_blank" rel="noopener">
+        <div class="ref-thumb t-maison">MAISON &amp; CO</div>
+        <div class="ref-body">
+          <h3>Maison &amp; Co — Cream Editorial</h3>
+          <p>Premium real-estate rental site with curated listings, search, and a warm gold-on-cream palette.</p>
+          <span class="ref-meta">Real Estate · Editorial · Premium</span>
+        </div>
+      </a>
+      <a class="ref-card" href="https://karahanjustin.github.io/website-showcase/maison-rentals-dark/" target="_blank" rel="noopener">
+        <div class="ref-thumb t-maison-dark">MAISON · DARK</div>
+        <div class="ref-body">
+          <h3>Maison &amp; Co — Dark Editorial</h3>
+          <p>Magazine-style variant in rust and ink. Massive Fraunces typography, asymmetric property grid.</p>
+          <span class="ref-meta">Real Estate · Magazine · Dark</span>
+        </div>
+      </a>
+      <a class="ref-card" href="https://karahanjustin.github.io/website-showcase/atelier-lumiere/" target="_blank" rel="noopener">
+        <div class="ref-thumb t-atelier">ATELIER LUMIÈRE</div>
+        <div class="ref-body">
+          <h3>Atelier Lumière — Beauty Studio</h3>
+          <p>Premium salon site with services, pricing, gallery, and booking form. Blush, cream, and rose-deep accents.</p>
+          <span class="ref-meta">Beauty · Salon · Feminine</span>
+        </div>
+      </a>
+      <a class="ref-card" href="https://karahanjustin.github.io/website-showcase/aurele-jewelry/" target="_blank" rel="noopener">
+        <div class="ref-thumb t-aurele">AURELE</div>
+        <div class="ref-body">
+          <h3>Aurele Jewelry</h3>
+          <p>Luxurious jewelry shop with functioning cart, category filters, and a dark-and-gold aesthetic.</p>
+          <span class="ref-meta">E-Commerce · Luxury · Cart</span>
+        </div>
+      </a>
+      <a class="ref-card" href="https://karahanjustin.github.io/website-showcase/cirque-etoile/" target="_blank" rel="noopener">
+        <div class="ref-thumb t-cirque">CIRQUE ÉTOILE</div>
+        <div class="ref-body">
+          <h3>Cirque Étoile</h3>
+          <p>Showcase site for a modern, animal-free circus. Dark navy &amp; gold with twinkling-star animations.</p>
+          <span class="ref-meta">Showcase · Dark &amp; Gold</span>
+        </div>
+      </a>
+      <a class="ref-card" href="https://karahanjustin.github.io/website-showcase/gym-neon/" target="_blank" rel="noopener">
+        <div class="ref-thumb t-gym">NEONFIT</div>
+        <div class="ref-body">
+          <h3>Neonfit Gym</h3>
+          <p>Bold neon-art gym one-pager with glowing effects, dark theme, and programs/trainers/pricing sections.</p>
+          <span class="ref-meta">Fitness · Neon · One-Pager</span>
+        </div>
+      </a>
+      <a class="ref-card" href="https://karahanjustin.github.io/website-showcase/blossom-cafe/" target="_blank" rel="noopener">
+        <div class="ref-thumb t-cafe">BLOSSOM CAFÉ</div>
+        <div class="ref-body">
+          <h3>Blossom Café</h3>
+          <p>Cozy pastel café one-pager in soft pink &amp; cream. Menu cards, gallery, and warm typography.</p>
+          <span class="ref-meta">Café · Pastel · Cozy</span>
+        </div>
+      </a>
+      <a class="ref-card" href="https://karahanjustin.github.io/website-showcase/ember-steakhouse/" target="_blank" rel="noopener">
+        <div class="ref-thumb t-ember">EMBER &amp; OAK</div>
+        <div class="ref-body">
+          <h3>Ember &amp; Oak Steakhouse</h3>
+          <p>Hipster steakhouse one-pager with dark wood tones, dry-aged cuts, and craft cocktails.</p>
+          <span class="ref-meta">Restaurant · Dark &amp; Warm</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- Pricing -->
 <section id="packages">
   <div class="container">
-    <h2 class="section-title">Services & Pricing</h2>
+    <h2 class="section-title">Services &amp; Pricing</h2>
     <p class="section-subtitle">Clear scope, fixed pricing, fast delivery. Pick a tier or ask me for a custom quote.</p>
     <div class="pricing-grid">
-      <div class="price-card">
-        <h3>Basic Website</h3>
-        <div class="price">$1,200</div>
-        <ul>
-          <li>5 Pages</li>
-          <li>Mobile Responsive Design</li>
-          <li>Contact Form + Email Integration</li>
-          <li>2 Revision Rounds</li>
-          <li>Delivery: 2 weeks</li>
-        </ul>
-        <a href="#contact" class="btn btn-secondary">Get Started</a>
-      </div>
       <div class="price-card featured">
-        <h3>Professional Website</h3>
-        <div class="price">$2,500</div>
+        <h3>Premium Website</h3>
+        <div class="price-stack">
+          <span class="delivery">2 weeks</span>
+          <span class="amount">€1,090</span>
+        </div>
         <ul>
-          <li>8–10 Pages</li>
-          <li>Lead Generation & Forms Setup</li>
-          <li>Email Integration & Analytics</li>
-          <li>SEO Basics</li>
-          <li>5 Revision Rounds</li>
-          <li>Delivery: 3 weeks</li>
+          <li>Highly elaborate, multi-section design</li>
+          <li>Extensive content offering (gallery, services, booking)</li>
+          <li>Custom imagery integration &amp; brand styling</li>
+          <li>Lead-generation forms &amp; analytics</li>
+          <li>SEO basics &amp; mobile-first responsive</li>
+          <li>Unlimited revisions until you're happy</li>
         </ul>
         <a href="#contact" class="btn btn-primary">Get Started</a>
       </div>
       <div class="price-card">
-        <h3>Advanced + Automation</h3>
-        <div class="price">$4,000<small>+</small></div>
+        <h3>Starter Website</h3>
+        <div class="price-stack">
+          <span class="delivery">48h</span>
+          <span class="amount">from €499</span>
+        </div>
         <ul>
-          <li>Everything in Professional</li>
-          <li>AI Lead Finder Integration</li>
-          <li>Automated Follow-up Workflows</li>
-          <li>Custom Dashboard / Tools</li>
-          <li>3 Months Ongoing Support</li>
-          <li>Delivery: 4 weeks</li>
+          <li>One polished landing page</li>
+          <li>Mobile-first responsive design</li>
+          <li>Contact form &amp; email integration</li>
+          <li>Delivered live in 48 hours</li>
+          <li>1 revision round included</li>
         </ul>
-        <a href="#contact" class="btn btn-secondary">Schedule Call</a>
+        <a href="#contact" class="btn btn-secondary">Get Started</a>
       </div>
     </div>
   </div>
