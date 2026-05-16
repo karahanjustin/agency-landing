@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Justin Karahan — Web Apps & AI Automation</title>
+<meta name="description" content="I build web apps and local-first tools that make customers money immediately. Custom websites, lead generation automation, and AI workflows." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --accent: #0066FF;
+    --accent-hover: #0052cc;
+    --bg: #f4f6fb;
+    --bg-grad-1: #dbe6ff;
+    --bg-grad-2: #f4f6fb;
+    --text: #0d1117;
+    --text-muted: #4a5568;
+    --card-bg: rgba(255, 255, 255, 0.55);
+    --card-border: rgba(255, 255, 255, 0.7);
+    --card-shadow: 0 8px 32px rgba(0, 60, 160, 0.08);
+    --nav-bg: rgba(255, 255, 255, 0.6);
+    --hr: rgba(13, 17, 23, 0.08);
+  }
+  [data-theme="dark"] {
+    --bg: #07090f;
+    --bg-grad-1: #0a1228;
+    --bg-grad-2: #07090f;
+    --text: #f0f4ff;
+    --text-muted: #9aa6bd;
+    --card-bg: rgba(255, 255, 255, 0.04);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    --nav-bg: rgba(10, 14, 24, 0.6);
+    --hr: rgba(255, 255, 255, 0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(circle at 15% 10%, rgba(0, 102, 255, 0.18), transparent 45%),
+      radial-gradient(circle at 85% 80%, rgba(0, 102, 255, 0.12), transparent 50%),
+      linear-gradient(135deg, var(--bg-grad-1), var(--bg-grad-2));
+    z-index: -1;
+    transition: background 0.3s ease;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  /* Nav */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--nav-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--hr);
+  }
+  .nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .logo {
+    font-weight: 800;
+    font-size: 1.15rem;
+    letter-spacing: -0.02em;
+  }
+  .logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .theme-toggle {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text);
+    font-size: 1rem;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .theme-toggle:hover { transform: scale(1.08); }
+
+  /* Buttons */
+  .btn {
+    display: inline-block;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.25s ease;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+    box-shadow: 0 6px 18px rgba(0, 102, 255, 0.35);
+  }
+  .btn-primary:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 102, 255, 0.45);
+  }
+  .btn-secondary {
+    background: var(--card-bg);
+    color: var(--text);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(12px);
+  }
+  .btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  /* Sections */
+  section { padding: 100px 0; }
+  .section-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .section-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 60px;
+    font-size: 1.05rem;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 120px 0 100px;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: clamp(2.2rem, 5.5vw, 4rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+    max-width: 900px;
+    margin: 0 auto 24px;
+  }
+  .hero h1 .accent {
+    background: linear-gradient(135deg, var(--accent), #6ba8ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--text-muted);
+    max-width: 700px;
+    margin: 0 auto 40px;
+  }
+  .hero-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+  /* About */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .about-text p { color: var(--text-muted); margin-bottom: 20px; font-size: 1.05rem; }
+  .badge {
+    display: inline-block;
+    padding: 6px 14px;
+    background: rgba(0, 102, 255, 0.12);
+    color: var(--accent);
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 18px;
+    border: 1px solid rgba(0, 102, 255, 0.25);
+  }
+  .skills-list { list-style: none; }
+  .skills-list li {
+    padding: 14px 18px;
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    font-weight: 500;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .skills-list li::before {
+    content: '→';
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* Portfolio */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .project-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 28px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: var(--card-shadow);
+  }
+  .project-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 40px rgba(0, 60, 160, 0.18);
+  }
+  .project-thumb {
+    height: 140px;
+    border-radius: 12px;
+    margin-bottom: 18px;
+    background: linear-gradient(135deg, var(--accent), #6ba8ff);
+    display: flex; align-items: center; justify-content: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  .project-card h3 { font-size: 1.15rem; margin-bottom: 8px; font-weight: 700; }
+  .project-card p { color: var(--text-muted); font-size: 0.92rem; margin-bottom: 14px; }
+  .tech-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tech-tag {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    background: rgba(0, 102, 255, 0.1);
+    color: var(--accent);
+    border-radius: 6px;
+    font-weight: 500;
+  }
+
+  /* Pricing */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .price-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    padding: 36px 28px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    box-shadow: var(--card-shadow);
+    display: flex; flex-direction: column;
+  }
+  .price-card:hover { transform: translateY(-8px); }
+  .price-card.featured {
+    border-color: var(--accent);
+    box-shadow: 0 10px 40px rgba(0, 102, 255, 0.25);
+    position: relative;
+  }
+  .price-card.featured::before {
+    content: 'Most Popular';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: white;
+    padding: 4px 14px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .price-card h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .price-card .price {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 24px;
+    letter-spacing: -0.03em;
+  }
+  .price-card .price small { font-size: 0.95rem; color: var(--text-muted); font-weight: 400; }
+  .price-card ul { list-style: none; margin-bottom: 28px; flex-grow: 1; }
+  .price-card ul li {
+    padding: 8px 0;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    display: flex; align-items: flex-start; gap: 10px;
+  }
+  .price-card ul li::before {
+    content: '✓';
+    color: var(--accent);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .price-card .btn { width: 100%; text-align: center; }
+
+  /* Tech / Cert */
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin-bottom: 50px;
+  }
+  .tech-item {
+    background: var(--card-bg);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 22px 14px;
+    text-align: center;
+    font-weight: 600;
+    transition: transform 0.2s, color 0.2s;
+  }
+  .tech-item:hover { transform: translateY(-3px); color: var(--accent); }
+  .cert-list {
+    max-width: 700px; margin: 0 auto;
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 32px;
+  }
+  .cert-list h4 { margin-bottom: 16px; color: var(--accent); }
+  .cert-list ul { list-style: none; }
+  .cert-list ul li { padding: 8px 0; color: var(--text-muted); border-bottom: 1px solid var(--hr); }
+  .cert-list ul li:last-child { border: none; }
+
+  /* Process */
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  .process-step {
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 28px;
+    text-align: center;
+    position: relative;
+  }
+  .step-num {
+    width: 44px; height: 44px;
+    background: linear-gradient(135deg, var(--accent), #6ba8ff);
+    color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    margin: 0 auto 16px;
+    font-size: 1.1rem;
+  }
+  .process-step h4 { margin-bottom: 8px; font-size: 1.1rem; }
+  .process-step p { color: var(--text-muted); font-size: 0.9rem; }
+
+  /* Final CTA */
+  .final-cta {
+    text-align: center;
+    background: var(--card-bg);
+    backdrop-filter: blur(24px);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    padding: 70px 30px;
+    box-shadow: var(--card-shadow);
+  }
+  .final-cta h2 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    margin-bottom: 16px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+  .final-cta p { color: var(--text-muted); margin-bottom: 32px; font-size: 1.1rem; }
+  .final-cta .cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
+  .email-link {
+    display: inline-block;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+  .email-link:hover { text-decoration: underline; }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    border-top: 1px solid var(--hr);
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    section { padding: 70px 0; }
+    .hero { padding: 80px 0 60px; }
+    .nav-links a:not(.lang-link) { display: none; }
+    .about-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Justin<span>.</span></div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#packages">Pricing</a>
+      <a href="#contact">Contact</a>
+      <a href="index.de.html" class="lang-link" title="Deutsch">DE</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="container">
+    <h1>I build web apps and local-first tools that <span class="accent">make customers money immediately</span></h1>
+    <p>Custom websites, lead generation automation, and AI workflows for small businesses and agencies.</p>
+    <div class="hero-cta">
+      <a href="#packages" class="btn btn-primary">View My Work</a>
+      <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+    </div>
+  </div>
+</header>
+
+<!-- About -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <span class="badge">Anthropic-Certified AI Automation Engineer</span>
+        <h2 class="section-title" style="text-align:left; margin-bottom: 20px;">A bit about me</h2>
+        <p>Computer Science student based in Germany, building with Claude and the Anthropic ecosystem. I design, build, and ship integrations end-to-end—from quick internal tools to full web apps.</p>
+        <p>No agencies, no middlemen. You talk directly to the person writing the code.</p>
+      </div>
+      <ul class="skills-list">
+        <li>Custom Website Design & Development</li>
+        <li>AI-Powered Lead Generation Tools</li>
+        <li>Workflow Automation & Integration</li>
+        <li>Local-First Apps & Standalone Tools</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Portfolio -->
+<section id="work">
+  <div class="container">
+    <h2 class="section-title">Selected Work</h2>
+    <p class="section-subtitle">A few projects I've shipped recently.</p>
+    <div class="portfolio-grid">
+      <div class="project-card">
+        <div class="project-thumb">📍</div>
+        <h3>Local Lead Finder</h3>
+        <p>Scrapes and enriches local business data so sales teams can stop wasting hours on prospecting.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Claude API</span>
+          <span class="tech-tag">OpenStreetMap</span>
+          <span class="tech-tag">Python</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-thumb">🎯</div>
+        <h3>Prospect Hunter</h3>
+        <p>AI-powered prospect research tool that turns a name into a full contact card with intent signals.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Claude API</span>
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">Node</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-thumb">🚀</div>
+        <h3>HQ Launcher</h3>
+        <p>Local-first dashboard that brings every internal app, script, and tool into one place.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Electron</span>
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">SQLite</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-thumb">💎</div>
+        <h3>Boutique & Retail Sites</h3>
+        <p>Conversion-focused websites for a jewelry store, gym, and neighborhood café.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">HTML/CSS</span>
+          <span class="tech-tag">JS</span>
+          <span class="tech-tag">SEO</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-thumb">🏋️</div>
+        <h3>Gym Neon</h3>
+        <p>Bold, high-contrast landing page for a strength gym with class booking integration.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">HTML/CSS</span>
+          <span class="tech-tag">Forms</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section id="packages">
+  <div class="container">
+    <h2 class="section-title">Services & Pricing</h2>
+    <p class="section-subtitle">Clear scope, fixed pricing, fast delivery. Pick a tier or ask me for a custom quote.</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <h3>Basic Website</h3>
+        <div class="price">$1,200</div>
+        <ul>
+          <li>5 Pages</li>
+          <li>Mobile Responsive Design</li>
+          <li>Contact Form + Email Integration</li>
+          <li>2 Revision Rounds</li>
+          <li>Delivery: 2 weeks</li>
+        </ul>
+        <a href="#contact" class="btn btn-secondary">Get Started</a>
+      </div>
+      <div class="price-card featured">
+        <h3>Professional Website</h3>
+        <div class="price">$2,500</div>
+        <ul>
+          <li>8–10 Pages</li>
+          <li>Lead Generation & Forms Setup</li>
+          <li>Email Integration & Analytics</li>
+          <li>SEO Basics</li>
+          <li>5 Revision Rounds</li>
+          <li>Delivery: 3 weeks</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary">Get Started</a>
+      </div>
+      <div class="price-card">
+        <h3>Advanced + Automation</h3>
+        <div class="price">$4,000<small>+</small></div>
+        <ul>
+          <li>Everything in Professional</li>
+          <li>AI Lead Finder Integration</li>
+          <li>Automated Follow-up Workflows</li>
+          <li>Custom Dashboard / Tools</li>
+          <li>3 Months Ongoing Support</li>
+          <li>Delivery: 4 weeks</li>
+        </ul>
+        <a href="#contact" class="btn btn-secondary">Schedule Call</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tech / Certs -->
+<section id="stack">
+  <div class="container">
+    <h2 class="section-title">Stack & Certifications</h2>
+    <p class="section-subtitle">The tools I use every day to ship reliable work.</p>
+    <div class="tech-grid">
+      <div class="tech-item">Claude API</div>
+      <div class="tech-item">Anthropic SDK</div>
+      <div class="tech-item">React</div>
+      <div class="tech-item">HTML / CSS</div>
+      <div class="tech-item">OpenStreetMap</div>
+    </div>
+    <div class="cert-list">
+      <h4>Anthropic Certified</h4>
+      <ul>
+        <li>Claude Code in Action</li>
+        <li>Claude with the API</li>
+        <li>Building AI Agents with Claude</li>
+        <li>Prompt Engineering Fundamentals</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Process -->
+<section id="process">
+  <div class="container">
+    <h2 class="section-title">How It Works</h2>
+    <p class="section-subtitle">A simple, transparent process from first call to launch.</p>
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="step-num">1</div>
+        <h4>Discovery</h4>
+        <p>30-min call to scope the work, set goals, and confirm timeline.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">2</div>
+        <h4>Design</h4>
+        <p>Clean mockups so you see the result before a single line of code.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">3</div>
+        <h4>Build</h4>
+        <p>Weekly check-ins, working previews, no surprises at the end.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-num">4</div>
+        <h4>Launch</h4>
+        <p>Deploy, hand over the keys, and stay available for follow-ups.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section id="contact">
+  <div class="container">
+    <div class="final-cta">
+      <h2>Ready to ship something great?</h2>
+      <p>Tell me what you're building. I'll get back within a day.</p>
+      <div class="cta-buttons">
+        <a href="#work" class="btn btn-secondary">View Portfolio</a>
+        <a href="mailto:hello@karahanjustin.dev" class="btn btn-primary">Get in Touch</a>
+      </div>
+      <a href="mailto:hello@karahanjustin.dev" class="email-link">hello@karahanjustin.dev</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Justin Karahan · Built with care · <a href="index.de.html">Deutsch</a></p>
+</footer>
+
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const root = document.documentElement;
+  const stored = localStorage.getItem('theme');
+  const initial = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  root.setAttribute('data-theme', initial);
+  toggle.textContent = initial === 'dark' ? '☀️' : '🌙';
+  toggle.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    toggle.textContent = next === 'dark' ? '☀️' : '🌙';
+  });
+</script>
+
+</body>
+</html>
