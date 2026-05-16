@@ -234,6 +234,62 @@
     font-weight: 700;
   }
 
+  /* Comprehensive Designs — grouped by vertical (variant A) */
+  .verticals { display: flex; flex-direction: column; gap: 56px; }
+  .vertical-group h3 {
+    font-size: 1.35rem;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .vertical-group h3 .v-label {
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .vertical-group > p.v-sub {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 18px;
+  }
+  .vertical-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .v-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 0;
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .v-card:hover { transform: translateY(-4px); box-shadow: var(--card-shadow); }
+  .v-card .v-thumb {
+    aspect-ratio: 16 / 9;
+    display: flex; align-items: center; justify-content: center;
+    color: white;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    font-size: 0.9rem;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+  .v-card .v-thumb.t-maison { background: linear-gradient(135deg, #b08d50, #2a2018); }
+  .v-card .v-thumb.t-maison-dark { background: linear-gradient(135deg, #c4633a, #14110d); }
+  .v-card .v-thumb.t-atelier { background: linear-gradient(135deg, #b07a72, #f1d8d2); color: #2a201d; text-shadow: none; }
+  .v-card .v-thumb.t-aurele { background: linear-gradient(135deg, #c9a96e, #1a1a1a); }
+  .v-card .v-thumb.t-cirque { background: linear-gradient(135deg, #c9a84c, #0a1228); }
+  .v-card .v-thumb.t-gym { background: linear-gradient(135deg, #ff00e5, #00f0ff); }
+  .v-card .v-thumb.t-cafe { background: linear-gradient(135deg, #C48B8B, #f5e6d3); color: #2a201d; text-shadow: none; }
+  .v-card .v-thumb.t-ember { background: linear-gradient(135deg, #d4603a, #1a0f08); }
+  .v-card .v-body { padding: 16px 18px; }
+  .v-card h4 { font-size: 0.98rem; margin-bottom: 4px; font-weight: 700; }
+  .v-card p { font-size: 0.82rem; color: var(--text-muted); }
+
   /* References — visual showcase cards */
   .ref-grid {
     display: grid;
@@ -586,61 +642,104 @@
   </div>
 </section>
 
-<!-- Portfolio -->
+<!-- Comprehensive Designs — grouped by vertical -->
 <section id="work">
   <div class="container">
-    <h2 class="section-title">Selected Work</h2>
-    <p class="section-subtitle">A few projects I've shipped recently.</p>
-    <div class="portfolio-grid">
-      <div class="project-card">
-        <div class="project-thumb">📍</div>
-        <h3>Local Lead Finder</h3>
-        <p>Scrapes and enriches local business data so sales teams can stop wasting hours on prospecting.</p>
-        <div class="tech-tags">
-          <span class="tech-tag">Claude API</span>
-          <span class="tech-tag">OpenStreetMap</span>
-          <span class="tech-tag">Python</span>
+    <h2 class="section-title">Comprehensive Designs</h2>
+    <p class="section-subtitle">Premium websites organized by the verticals I build for. Each card links to the live sample.</p>
+    <div class="verticals">
+
+      <div class="vertical-group">
+        <h3><span class="v-label">For Real Estate</span> &mdash; editorial &amp; listings</h3>
+        <p class="v-sub">Curated, magazine-style rental and listings sites with search, filters, and trust-building copy.</p>
+        <div class="vertical-cards">
+          <a class="v-card" href="https://karahanjustin.github.io/website-showcase/maison-rentals/" target="_blank" rel="noopener">
+            <div class="v-thumb t-maison">MAISON &amp; CO &mdash; CREAM</div>
+            <div class="v-body">
+              <h4>Maison &amp; Co</h4>
+              <p>Premium rentals, cream + gold editorial.</p>
+            </div>
+          </a>
+          <a class="v-card" href="https://karahanjustin.github.io/website-showcase/maison-rentals-dark/" target="_blank" rel="noopener">
+            <div class="v-thumb t-maison-dark">MAISON &middot; DARK</div>
+            <div class="v-body">
+              <h4>Maison &amp; Co &mdash; Dark Editorial</h4>
+              <p>Magazine variant in rust and ink.</p>
+            </div>
+          </a>
         </div>
       </div>
-      <div class="project-card">
-        <div class="project-thumb">🎯</div>
-        <h3>Prospect Hunter</h3>
-        <p>AI-powered prospect research tool that turns a name into a full contact card with intent signals.</p>
-        <div class="tech-tags">
-          <span class="tech-tag">Claude API</span>
-          <span class="tech-tag">React</span>
-          <span class="tech-tag">Node</span>
+
+      <div class="vertical-group">
+        <h3><span class="v-label">For Beauty &amp; Wellness</span> &mdash; salons &amp; studios</h3>
+        <p class="v-sub">Booking-driven sites with services, pricing, and gallery sections for salons, studios, and spas.</p>
+        <div class="vertical-cards">
+          <a class="v-card" href="https://karahanjustin.github.io/website-showcase/atelier-lumiere/" target="_blank" rel="noopener">
+            <div class="v-thumb t-atelier">ATELIER LUMI&Egrave;RE</div>
+            <div class="v-body">
+              <h4>Atelier Lumi&egrave;re</h4>
+              <p>Premium beauty salon with booking form.</p>
+            </div>
+          </a>
         </div>
       </div>
-      <div class="project-card">
-        <div class="project-thumb">🚀</div>
-        <h3>HQ Launcher</h3>
-        <p>Local-first dashboard that brings every internal app, script, and tool into one place.</p>
-        <div class="tech-tags">
-          <span class="tech-tag">Electron</span>
-          <span class="tech-tag">React</span>
-          <span class="tech-tag">SQLite</span>
+
+      <div class="vertical-group">
+        <h3><span class="v-label">For Hospitality &amp; Dining</span> &mdash; restaurants, cafés, venues</h3>
+        <p class="v-sub">One-pagers and brochure sites that translate atmosphere into the browser.</p>
+        <div class="vertical-cards">
+          <a class="v-card" href="https://karahanjustin.github.io/website-showcase/blossom-cafe/" target="_blank" rel="noopener">
+            <div class="v-thumb t-cafe">BLOSSOM CAF&Eacute;</div>
+            <div class="v-body">
+              <h4>Blossom Café</h4>
+              <p>Cozy pastel café in pink + cream.</p>
+            </div>
+          </a>
+          <a class="v-card" href="https://karahanjustin.github.io/website-showcase/ember-steakhouse/" target="_blank" rel="noopener">
+            <div class="v-thumb t-ember">EMBER &amp; OAK</div>
+            <div class="v-body">
+              <h4>Ember &amp; Oak Steakhouse</h4>
+              <p>Hipster steakhouse, dark and warm.</p>
+            </div>
+          </a>
+          <a class="v-card" href="https://karahanjustin.github.io/website-showcase/cirque-etoile/" target="_blank" rel="noopener">
+            <div class="v-thumb t-cirque">CIRQUE &Eacute;TOILE</div>
+            <div class="v-body">
+              <h4>Cirque Étoile</h4>
+              <p>Modern circus showcase, dark + gold.</p>
+            </div>
+          </a>
         </div>
       </div>
-      <div class="project-card">
-        <div class="project-thumb">💎</div>
-        <h3>Boutique & Retail Sites</h3>
-        <p>Conversion-focused websites for a jewelry store, gym, and neighborhood café.</p>
-        <div class="tech-tags">
-          <span class="tech-tag">HTML/CSS</span>
-          <span class="tech-tag">JS</span>
-          <span class="tech-tag">SEO</span>
+
+      <div class="vertical-group">
+        <h3><span class="v-label">For Retail &amp; E-Commerce</span> &mdash; boutiques and shops</h3>
+        <p class="v-sub">Conversion-focused product pages with cart, filters, and brand-driven layouts.</p>
+        <div class="vertical-cards">
+          <a class="v-card" href="https://karahanjustin.github.io/website-showcase/aurele-jewelry/" target="_blank" rel="noopener">
+            <div class="v-thumb t-aurele">AURELE</div>
+            <div class="v-body">
+              <h4>Aurele Jewelry</h4>
+              <p>Luxury jewelry shop with working cart.</p>
+            </div>
+          </a>
         </div>
       </div>
-      <div class="project-card">
-        <div class="project-thumb">🏋️</div>
-        <h3>Gym Neon</h3>
-        <p>Bold, high-contrast landing page for a strength gym with class booking integration.</p>
-        <div class="tech-tags">
-          <span class="tech-tag">HTML/CSS</span>
-          <span class="tech-tag">Forms</span>
+
+      <div class="vertical-group">
+        <h3><span class="v-label">For Trades &amp; Fitness</span> &mdash; bold, conversion-focused one-pagers</h3>
+        <p class="v-sub">High-contrast landing pages designed to book calls or class slots, fast.</p>
+        <div class="vertical-cards">
+          <a class="v-card" href="https://karahanjustin.github.io/website-showcase/gym-neon/" target="_blank" rel="noopener">
+            <div class="v-thumb t-gym">NEONFIT</div>
+            <div class="v-body">
+              <h4>Neonfit Gym</h4>
+              <p>Neon-art one-pager with class booking.</p>
+            </div>
+          </a>
         </div>
       </div>
+
     </div>
   </div>
 </section>
